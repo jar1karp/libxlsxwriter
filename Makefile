@@ -11,6 +11,9 @@ ifdef V
 Q=
 endif
 
+DESTINCDIR?=/usr/include
+DESTLIBDIR?=/usr/lib
+
 .PHONY: docs tags examples
 
 # Build the libs.
@@ -84,13 +87,13 @@ docs:
 
 # Simple minded install.
 install:
-	$(Q)cp -r include/* /usr/include
-	$(Q)cp lib/* /usr/lib
+	$(Q)cp -r include/* $(DESTINCDIR)
+	$(Q)cp lib/* $(DESTLIBDIR)
 
 # Simpler minded uninstall.
 uninstall:
-	$(Q)rm -rf /usr/include/xlsxwriter*
-	$(Q)rm /usr/lib/libxlsxwriter.*
+	$(Q)rm -rf $(DESTINCDIR)/xlsxwriter*
+	$(Q)rm $(DESTLIBDIR)/libxlsxwriter.*
 
 # Strip the lib files.
 strip:
